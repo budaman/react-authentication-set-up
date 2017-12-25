@@ -11,4 +11,5 @@ let getFoodData = () => {
 
 let getCelebrityData = () => {
   const url = `${BASE_URL}/api/jokes/celebrity`;
+  return axios.get(url).then(response => response.data);
 };
