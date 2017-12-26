@@ -6,28 +6,11 @@ var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var cors = require("cors");
 
-const jwt = require("express-jwt");
-const jwks = require("jwks-rsa");
-
 var index = require("./routes/index");
 var users = require("./routes/users");
 
 var app = express();
 app.use(cors()); //allows api call!
-
-var authCheck = jwt({
-  secret: jwks.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    // YOUR-AUTH0-DOMAIN name e.g prosper.auth0.com
-    jwksUri: "https://{YOUR-AUTH0-DOMAIN}/.well-known/jwks.json"
-  }),
-  // This is the identifier we set when we created the API
-  audience: "{YOUR-API-AUDIENCE-ATTRIBUTE}",
-  issuer: "{YOUR-AUTH0-DOMAIN}",
-  algorithms: ["RS256"]
-});
 
 // view engine setu p
 app.set("views", path.join(__dirname, "views"));
